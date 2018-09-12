@@ -1,0 +1,16 @@
+{
+  "name": "users",
+  "version": "1.0.0",
+  "description": "This is the first project in Stephen Grider's Course: The Complete Developer's Guide for MongoDB",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mocha": "^5.2.0",
+    "mongoose": "^5.2.14",
+    "nodemon": "^1.18.4"
+  }
+}
