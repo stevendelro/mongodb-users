@@ -9,12 +9,21 @@ describe('Updating records', () => {
     joe.save().then(() => done());
   });
 
-  it('Updating a model intance by using set and save', done => {
+  // Helper function created to keep things DRY.
+  function assertName(promise, done) {
+    promise.then(() => User.find({})).then(users => {
+      assert(users.length === 1);
+      assert(users[0].name === 'Alex');
+      done();
+    });
+  }
+  it('will update a model intance by using set and save', done => {
     // Here, we're going to change Joe's name property to Alex.
     joe.set('name', 'Alex');
 
     // Now we must save it in order for the change to persist.
-    joe.save()
+    joe
+      .save()
       /**
        * When passing in an empty object to the .find method,
        * we are essentially saying that there is no specific
@@ -30,5 +39,9 @@ describe('Updating records', () => {
         assert(users[0].name === 'Alex');
         done();
       });
+  });
+
+  it('will update a model intance by using .update()', done => {
+    assertName(joe.update({ name: 'Alex' }), done);
   });
 });
