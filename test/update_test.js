@@ -17,6 +17,9 @@ describe('Updating records', () => {
       done();
     });
   }
+
+  // This first "it" function will NOT use the helper function in
+  // order to comment over the complete process.
   it('will update a model intance by using set and save', done => {
     // Here, we're going to change Joe's name property to Alex.
     joe.set('name', 'Alex');
@@ -41,7 +44,20 @@ describe('Updating records', () => {
       });
   });
 
+  // From here downwards we will use the assertName helper function.
   it('will update a model intance by using .update()', done => {
     assertName(joe.update({ name: 'Alex' }), done);
+  });
+
+  it('will update a modal class', done => {
+    assertName(User.update({ name: 'Joe' }, { name: 'Alex' }), done);
+  });
+  
+  it('will findOneAndUpdate a modal class', done => {
+    assertName(User.findOneAndUpdate({ name: 'Joe' }, { name: 'Alex' }), done);
+  });
+
+  it('will findByIdAndUpdate a modal class', done => {
+    assertName(User.findByIdAndUpdate(joe._id, { name: 'Alex' }), done);
   });
 });
