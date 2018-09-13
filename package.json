@@ -4,7 +4,7 @@
   "description": "This is the first project in Stephen Grider's Course: The Complete Developer's Guide for MongoDB",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "nodemon --exec 'mocha -R min'"
   },
   "author": "",
   "license": "ISC",
