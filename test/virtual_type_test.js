@@ -1,17 +1,18 @@
 const assert = require('assert');
-const User = require('../src/user');
+const User = require('../src/userSchema');
 
-describe( 'Virtual types', () => {
+describe('Virtual types', () => {
   it('will verify that postCount returns the correct postCount', done => {
     const joe = new User({
       name: 'Joe',
-      posts: [{ title: 'PostTitle'}]
+      posts: [{ title: 'PostTitle' }]
     });
-    joe.save()
+    joe
+      .save()
       .then(() => User.findOne({ name: 'Joe' }))
-      .then( user => {
+      .then(user => {
         assert(joe.postCount === 1);
         done();
-      })
+      });
   });
 });

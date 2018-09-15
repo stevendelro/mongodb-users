@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 before(done => {
   mongoose.connect(
-    'mongodb://localhost/users_test',
+    'mongodb://localhost/userSchemas_test',
     { useNewUrlParser: true }
   );
   mongoose.connection

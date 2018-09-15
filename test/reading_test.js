@@ -1,5 +1,5 @@
 const assert = require('assert');
-const User = require('../src/user');
+const User = require('../src/userSchema');
 
 describe('Reading users out of the database', () => {
   let joe;
@@ -19,10 +19,9 @@ describe('Reading users out of the database', () => {
 
   it('find a user with a particular id', done => {
     // This was a basic example of using the .findOne method.
-    User.findOne({ _id: joe._id })
-      .then( user => {
-        assert(user.name === 'Joe');
-        done();
-      })
-  })
+    User.findOne({ _id: joe._id }).then(user => {
+      assert(user.name === 'Joe');
+      done();
+    });
+  });
 });

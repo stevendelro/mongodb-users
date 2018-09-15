@@ -1,5 +1,5 @@
 const assert = require('assert');
-const User = require('../src/user');
+const User = require('../src/userSchema');
 
 describe('Deleting a user', () => {
   let joe;
@@ -43,10 +43,10 @@ describe('Deleting a user', () => {
   it('class method findByIdAndRemove', done => {
     // Search all Users for a specific ID and remove it.
     User.findByIdAndRemove(joe._id)
-    .then(() => User.findOne({ name: 'Joe' }))
-    .then(user => {
-      assert(user === null);
-      done();
-    });
+      .then(() => User.findOne({ name: 'Joe' }))
+      .then(user => {
+        assert(user === null);
+        done();
+      });
   });
 });

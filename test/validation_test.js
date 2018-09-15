@@ -1,5 +1,5 @@
 const assert = require('assert');
-const User = require('../src/user');
+const User = require('../src/userSchema');
 
 describe('Validating records', () => {
   it('requires a user name', () => {
