@@ -52,7 +52,8 @@ describe('Subdocuments', () => {
       name: 'Joe',
       posts: [{ title: 'New Title' }]
     });
-    joe.save()
+    joe
+      .save()
       .then(() => User.findOne({ name: 'Joe' }))
       .then(user => {
         const post = user.posts[0];
