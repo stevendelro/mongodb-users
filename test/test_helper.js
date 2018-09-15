@@ -16,7 +16,12 @@ before(done => {
 
 // This will wipe the database beforeEach test.
 beforeEach(done => {
-  mongoose.connection.collections.users.drop(() => {
-    done();
+  const { users, comments, blogPosts } = mongoose.connection.collections;
+  users.drop(() => {
+    comments.drop(() => {
+      blogPosts.drop(() => {
+        done();
+      });
+    });
   });
 });
