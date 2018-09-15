@@ -12,7 +12,11 @@ const user = new Schema({
     required: [true, 'Name is required.']
   },
   posts: [PostSchema],
-  likes: Number
+  likes: Number,
+  blogPosts: [{
+    type: Schema.Types.ObjecId,
+    ref: 'blogPost'
+  }]
 });
 
 /**
