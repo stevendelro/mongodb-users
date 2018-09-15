@@ -7,18 +7,43 @@ describe('Subdocuments', () => {
       name: 'Joe',
       posts: [
         {
-          title: 'Joe\'s First Post',
+          title: "Joe's First Post",
           author: 'Joe',
           main_content: 'This is my first post.',
-          tags: ['mongo','backend', 'developer']
+          tags: ['mongo', 'backend', 'developer']
         }
       ]
     });
-    joe.save()
-    .then(() => User.findOne({ name: 'Joe'}))
-    .then( user => {
-      assert(user.posts[0].title === 'Joe\'s First Post');
-      done();
+    joe
+      .save()
+      .then(() => User.findOne({ name: 'Joe' }))
+      .then(user => {
+        assert(user.posts[0].title === "Joe's First Post");
+        done();
+      });
+  });
+
+  it('can add subdocuments to an existing record', done => {
+    const joe = new User({
+      name: 'Joe',
+      posts: []
     });
+    joe
+      .save()
+      .then(() => User.findOne({ name: 'Joe' }))
+      .then(user => {
+        user.posts.push({
+          title: 'Second Post',
+          author: 'Joe',
+          main_content: 'This is my second post.',
+          tags: ['react', 'node', 'express']
+        });
+        return user.save();
+      })
+      .then(() => User.findOne({ name: 'Joe' }))
+      .then(user => {
+        assert(user.posts[0].title === 'Second Post');
+        done();
+      });
   });
 });
