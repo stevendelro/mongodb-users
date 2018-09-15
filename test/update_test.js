@@ -5,7 +5,7 @@ describe('Updating records', () => {
   let joe;
 
   beforeEach(done => {
-    joe = new User({ name: 'Joe', postCount: 0 });
+    joe = new User({ name: 'Joe', likes: 0 });
     joe.save().then(() => done());
   });
 
@@ -62,11 +62,11 @@ describe('Updating records', () => {
   });
 
   // Here, we are experimenting with the $inc Update Operator.
-  xit('will increment a users postCount by 1', done => {
-    User.update({ name: 'Joe' }, { $inc: { postCount: 1 } })
+  it('will increment a users postCount by 1', done => {
+    User.update({ name: 'Joe' }, { $inc: { likes: 1 } })
       .then(() => User.findOne({ name: 'Joe' }))
       .then(user => {
-        assert(user.postCount === 1);
+        assert(user.likes === 1);
         done();
       });
   });
