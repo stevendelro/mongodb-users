@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const PostSchema = require('./postSchema');
 const Schema = mongoose.Schema;
 
-const UserSchema = new Schema({
+const user = new Schema({
   name: {
     type: String,
     validate: {
@@ -20,15 +20,15 @@ const UserSchema = new Schema({
  * standard function block within the ES6 getter. This enables
  * us to use the "this" keyword. Fat arrow functions will not
  * allow the correct reference to the "this" keyword.
- * 
+ *
  * A fat arrow function would reference "this" to be this entire
  * document, and not the scope in which we intend for "this" to
  * be used, in this case, within the scope of the virtual type.
  */
-UserSchema.virtual('postCount').get(function() {
+user.virtual('postCount').get(function() {
   return this.posts.length;
 });
 
-const User = mongoose.model('user', UserSchema);
+const User = mongoose.model('user', user);
 
 module.exports = User;

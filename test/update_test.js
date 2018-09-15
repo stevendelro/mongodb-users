@@ -1,5 +1,5 @@
 const assert = require('assert');
-const User = require('../src/userSchema');
+const User = require('../src/user');
 
 describe('Updating records', () => {
   let joe;

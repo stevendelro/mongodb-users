@@ -1,5 +1,5 @@
 const assert = require('assert');
-const User = require('../src/userSchema');
+const User = require('../src/user');
 
 describe('Virtual types', () => {
   it('will verify that postCount returns the correct postCount', done => {
