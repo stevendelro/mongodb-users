@@ -62,7 +62,7 @@ describe('Updating records', () => {
   });
 
   // Here, we are experimenting with the $inc Update Operator.
-  it('will increment a users postCount by 1', done => {
+  xit('will increment a users postCount by 1', done => {
     User.update({ name: 'Joe' }, { $inc: { postCount: 1 } })
       .then(() => User.findOne({ name: 'Joe' }))
       .then(user => {
