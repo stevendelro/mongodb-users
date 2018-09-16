@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const PostSchema = require('./postSchema');
 const Schema = mongoose.Schema;
 
-const user = new Schema({
+const UserSchema = new Schema({
   name: {
     type: String,
     validate: {
@@ -13,10 +13,12 @@ const user = new Schema({
   },
   posts: [PostSchema],
   likes: Number,
-  blogPosts: [{
-    type: Schema.Types.ObjectId,
-    ref: 'blogPost'
-  }]
+  blogPosts: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'blogPost'
+    }
+  ]
 });
 
 /**
@@ -29,10 +31,15 @@ const user = new Schema({
  * document, and not the scope in which we intend for "this" to
  * be used, in this case, within the scope of the virtual type.
  */
-user.virtual('postCount').get(function() {
+UserSchema.virtual('postCount').get(function() {
   return this.posts.length;
 });
 
-const User = mongoose.model('user', user);
+UserSchema.pre('remove', function(next) {
+  const BlogPost = mongoose.model('blogPost');
+  BlogPost.remove({ _id: { $in: this.blogPosts } }).then(() => next());
+});
+
+const User = mongoose.model('user', UserSchema);
 
 module.exports = User;
