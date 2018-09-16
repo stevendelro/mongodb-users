@@ -5,7 +5,7 @@ Built while following along: [The Complete Developers Guide to MongoDB](https://
 
 ## What does it do?
 
-Nothing. This isn't project that's meant for a user to interface with. 
+Nothing. This isn't a project that's meant for a user to interface with. 
 
 All of the code from this project is concerned with teaching the student how to properly perform all MongoDB operations with a barrage of examples, explanations and subsequent tests to verify correct input/output.
 
